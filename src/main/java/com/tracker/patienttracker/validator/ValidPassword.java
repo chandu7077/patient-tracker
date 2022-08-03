@@ -1,19 +1,8 @@
 package com.tracker.patienttracker.validator;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
 import javax.validation.Constraint;
-import javax.validation.ConstraintTarget;
 import javax.validation.Payload;
-import javax.validation.constraintvalidation.ValidationTarget;
-
-import org.hibernate.tool.schema.TargetType;
-
-import ch.qos.logback.classic.db.names.TableName;
+import java.lang.annotation.*;
 
 @Documented
 @Target({ ElementType.ANNOTATION_TYPE, ElementType.FIELD, ElementType.TYPE })

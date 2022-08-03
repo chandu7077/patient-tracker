@@ -90,25 +90,20 @@ public class PatientRecordService {
 		int patientRecordId = dto.getRecordId();
 		int doctorId = dto.getDoctorId();
 		Doctor doctor =  doctorService.getDoctor(doctorId);
-		
 		Optional<PatientRecord> optional = patientRecordRepository.findByrecordIdAndDoctor(patientRecordId, doctor);
 		if(!optional.isPresent()) {
 			throw new PatientNotFoundException();
 		}
-		
 		Prescription prescription = dto.getPrescription();
 		double prescriptionCost = 0;
 		for(MedicineQuantity mq : prescription.getMedicineQuantities()) {
 			prescriptionCost = prescriptionCost + mq.getQuantity()*mq.getMedicine().getMedicineCost();
 		}
-		
 		PatientRecord patientRecord=optional.get();
 		prescription.setPrescriptionCost(prescriptionCost);
 		patientRecord.getPrescriptions().add(prescription);
 		PatientRecord record = patientRecordRepository.save(patientRecord);
-		
 		return "Added Successfully";
-		
 	}
 	
 	public String updatePrescription(PatientRecordDTO dto) {
